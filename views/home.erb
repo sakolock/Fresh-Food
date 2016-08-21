@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="row">
+      <ul class="nav nav-tabs nav-justified" role="nav">
+        <li role="presentation" class="primary-bg active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab"><i class="fa fa-cutlery"></i> All Food</a></li>
+        <li role="presentation" class="expiring-soon"><a href="#expiring" aria-controls="all" role="tab" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i> Expiring Soon</a></li>         
+        <li role="presentation" class="donate"><a href="#donate-food" aria-controls="all" role="tab" data-toggle="tab"><i class="fa fa-shopping-basket"></i> Donate Food</a></li>
+      </ul>
+  </div>
+
+      <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="all">
+      <div class="col-xs-12">
+<!--         <div class="row">
+            <div class="col-xs-4">
+                <h2>Food</h2>
+            </div>
+            <div class="col-xs-4">
+                <h2>Category</h2>
+            </div>
+            <div class="col-xs-4">
+                <h2>Expires</h2>
+            </div>
+        </div>   -->           
+        <div class="row">
+            <div class="text-center">
+              <% if @fridge_contents.empty? %>
+                <p class="large">Your fridge is empty!</p>
+                <p>You probably actually have food in your fridge though. So log in or sign up and track when your food is going to spoil so you can waste less and save money.</p>
+              <% else %>
+                <p class="large">Your Food</p>
+              <% end %>
+            </div>
+            <ul>
+              <li class="food-button primary-bg">
+                <div>
+                  <a href="add"><i class="fa fa-plus fa-5x"></i></a>
+                </div>
+              </li>
+              <% @fridge_contents.each do |food_item| %>
+                <li class="food-button primary-bg">
+                  <div>
+                    <p><%= food_item[:name].capitalize %></p>
+                    <p><%= food_item[:expires_on] %></p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+
+
+
+<!--             <div class="col-xs-4">
+                <p>Food name placeholder</p>
+            </div>
+            <div class="col-xs-4">
+                <p>Food Category placeholder</p>
+            </div>
+            <div class="col-xs-4">
+                <p>Food editing options placeholder</p>
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="expiring">
+      <div class="col-xs-12">
+<!--         <div class="row">
+          <div class="col-xs-4">
+              <h2>Food</h2>
+          </div>
+          <div class="col-xs-4">
+              <h2>Category</h2>
+          </div>
+          <div class="col-xs-4">
+              <h2>Expires</h2>
+          </div>
+        </div>  -->           
+        <div class="row">
+            <div class="text-center">
+              <% if !@expiring_food %>
+                <p class="large">No food is expiring soon!</p>
+                <p>Change your settings to decrease the number of days for expiration warnings</p>
+              <% else %>
+                <p class="large">Expiring Soon!</p>
+              <% end %>
+            </div>
+            <ul>
+              <li class="food-button primary-bg">
+                <div>
+                  <a href="add"><i class="fa fa-plus fa-5x"></i></a>
+                </div>
+              </li>
+              <% @fridge_contents.each do |food_item| %>
+                <% if @expiring_food.include?(food_item) %>
+                  <li class="food-button primary-bg">
+                    <div>
+                      <p><%= food_item[:name].capitalize %></p>
+                      <p><%= food_item[:expires_on] %></p>
+                    </div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+
+
+
+<!--             <div class="col-xs-4">
+                <p>Expiring Food placeholder</p>
+            </div>
+            <div class="col-xs-4">
+                <p>Placeholder</p>
+            </div>
+            <div class="col-xs-4">
+                <p>Placeholder</p>
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="donate-food">
+      <div class="col-xs-12">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2>Food Banks nearby</h2>
+            <div class="map-responsive">
+              <iframe class=""
+                width="100%"
+                height="300px"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBU5Hqy0OkaVwZW3Q-IlnGSvFoTY_rt6sw
+                  &q=Food+Banks" allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>              
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
