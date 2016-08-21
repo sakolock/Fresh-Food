@@ -14,6 +14,7 @@ require 'json'
 enable :sessions
 set :session_secret, 'setme'
 
+
 before do
   APP_NAME = "Fresh Food"
   session[:groceries] ||= []
